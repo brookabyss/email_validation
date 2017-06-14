@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Emails</title>
+    <title>Success</title>
     <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
   </head>
   <body>
-    <form class="" action="/create" method="post">
+    <div class="wrapper">
       {% with messages = get_flashed_messages(with_categories=true) %}
         {% for message in messages %}
             <div class={{message[0]}}>
@@ -14,8 +14,15 @@
             </div>
         {% endfor %}
       {% endwith %}
-      Email: <input type="text" name="email" value="">
-      <input type="submit" name="submit" value="Submit">
-    </form>
+      <h1>Email Addresses entered:</h1>
+      <table>
+        <tr>
+          {% for v in emails%}
+          <td>{{v['email']}}</td>
+          <td>{{v['created_at']}}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
   </body>
 </html>
